@@ -1,0 +1,58 @@
+<div class="modal fade" id="editAppointmentModal" tabindex="-1" role="dialog"
+    aria-labelledby="editAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="put" id="edit_wajebaat_appointment">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAppointmentModalLabel">Edit Appointment Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <p class="text-muted">You can only increase the slot count.</p>
+                    <div class="form-group">
+                        <label for="slot_amount">Total Slots to be Allocated</label>
+                        <input type="hidden" id="edit_appointment_id" value="" />
+                        <input type="number" class="form-control" id="slot_amount" name="slot_amount"
+                            placeholder="Enter total slots">
+
+                        <br/>
+
+                        <label for="appointment_start_time">Start time of the appointment: </label>
+                        <input type="time" class="form-control" id="appointment_start_time" name="appointment_start_time"
+                            placeholder="Enter start time">
+
+
+                        <br/>
+
+                        <label for="appointment_end_time">End time of the appointment: </label>
+                        <input type="time" class="form-control" id="appointment_end_time" name="appointment_end_time"
+                            placeholder="Enter end time">
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"
+                        onclick="jamaat_edit_wajebaat_appointment()">Save</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Tempus Dominus for the start time input
+        $('#appointment_start_time').datetimepicker({
+            format: 'LT' // LT is for 12-hour time format with AM/PM
+        });
+
+        // Initialize Tempus Dominus for the end time input
+        $('#appointment_end_time').datetimepicker({
+            format: 'LT' // LT is for 12-hour time format with AM/PM
+        });
+    });
+</script>

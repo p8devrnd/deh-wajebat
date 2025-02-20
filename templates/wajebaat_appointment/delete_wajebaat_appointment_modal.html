@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteAppointmentModal" tabindex="-1" role="dialog"
+    aria-labelledby="deleteAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="put" id="delete_wajebaat_appointment">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAppointmentModalLabel">Delete Appointment?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="delete_appointment_id" value="" />
+                    <p class="text-muted">Once you delete, it will not be available to users</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"
+                        onclick="jamaat_delete_wajebaat_appointment()">Delete</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+body {
+    background-color: #FEF7E4;
+}
+
+.my-div {
+    width: 70%;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* Styles for screens up to 600px (mobile) */
+@media only screen and (max-width: 600px) {
+    .my-div {
+        width: 85%;
+    }
+}
+
+/* Styles for screens between 601px and 900px (tablet) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .my-div {
+        width: 60%;
+    }
+}
+
+/* Styles for screens 901px and above (desktop) */
+@media only screen and (min-width: 901px) {
+    .my-div {
+        width: 45%;
+    }
+}
+
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffe5a2;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+    color: #ffe5a2;
+}
+
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white; /* Background white */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: black; /* Text black */
+}
+
+th {
+    background-color: black; /* Header background black */
+    color: white; /* Text white */
+    font-weight: bold; /* Font weight bold */
+}
+
+.edit-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 12%;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 12%;
+}
+
+.custom-submit-btn {
+    border-radius: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.custom-dialog {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}

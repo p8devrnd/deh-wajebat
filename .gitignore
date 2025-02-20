@@ -1,0 +1,7 @@
+/allocation/migrations
+/allocation/__pycache__
+/jamaat_auth/migrations
+/jamaat_auth/__pycache__
+/wajebaat_token_allocation/__pycache__
+/venv/
+venv

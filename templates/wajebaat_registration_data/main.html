@@ -1,0 +1,131 @@
+{% load template_registry %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/requests.js' %}"></script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjuman Taiyabi Jamaat: Mumin Master </title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <center>
+            <p>
+                <img src="{% static 'img/ajt_logo.png' %}" style="width: 80%; height: 80%;">
+            </p>
+        </center>
+        <a href="/jamaat/allocation/wajebaat_appointment">Wajebaat Takhmeem</a>
+        <a href="/jamaat/allocation/wajebaat_registration_data">Wajebaat Registration Data</a>
+        <a href="/jamaat/allocation/wajebaat_mumin_master">Mumineen HOF</a>
+        <a href="" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <h2>Wajebaat Registration Data</h2>
+            </div>
+        </div>
+        <p>Manage the registration tokens and mark them attended or not.</p>
+        <hr>
+
+        <div class="alert alert-danger" id='alert-box-error' role="alert" style="display: none;">
+            It seems server-side issue has occured. Please try again or bear patience.
+        </div>
+        <div class="alert alert-success" id='alert-box-success' role="alert" style="display: none;">
+            Marked as attended.
+        </div>  
+
+        <div>
+            <div class="row">
+                <div class="col-lg-1 col-sm-12">
+                    Filter by date: 
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <input class="form-control" style="width:50%" type="date" id="date_filter" onchange="updateURL()" />
+                </div>
+                <div class="col-lg-1 col-sm-12">
+                    Filter by start time: 
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <input class="form-control" style="width:50%" type="time" id="appointment_start_time" onchange="updateURL()"/>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <button type="button" class="btn btn-dark" onclick="fetch_registration_list(1)">Filter</button>
+                    <button type="button" class="btn btn-dark" onclick="downloadCSV()">Export</button>
+                </div>
+            </div>
+        </div>
+
+        <br/><br/>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>ITS</th>
+                    <th>Name</th>
+                    <th>Slot No</th>
+                    <th>Time Slot</th>
+                    <th>Takhmeem Status</th>
+                </tr>
+            </thead>
+            <tbody id="registration_data_rows">
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example" id="pagination_block" style="display:none">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#" style="color: #fff; background-color: #000;" onclick="prevNextRegistrationActionHandler(this)">Previous</a></li>
+                <li class="page-item"><a class="page-link current-page" onclick="markSelectedRegistrationPage(this)" href="#" style="color: #000; background-color: #fff;" id="prev_ref">1</a></li>
+                <li class="page-item"><a class="page-link" onclick="markSelectedRegistrationPage(this)" href="#" style="color: #fff; background-color: #000;" id="2nd">2</a></li>
+                <li class="page-item"><a class="page-link" onclick="markSelectedRegistrationPage(this)" href="#" style="color: #fff; background-color: #000;" id="3rd">3</a></li>
+                <li class="page-item"><a class="page-link" onclick="markSelectedRegistrationPage(this)" href="#" style="color: #fff; background-color: #000;" id="4th">4</a></li>
+                <li class="page-item"><a class="page-link" onclick="markSelectedRegistrationPage(this)" href="#" style="color: #fff; background-color: #000;" id="next_ref">5</a></li>
+                <li class="page-item"><a class="page-link" href="#" style="color: #fff; background-color: #000;" onclick="prevNextRegistrationActionHandler(this)">Next</a></li>
+            </ul>
+        </nav>
+
+
+
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            var accessToken = getCookie('JMT_USER_JWT_TOKEN');
+
+            if (!accessToken) {
+                window.location.href = '/jamaat/auth/jamaat_login';
+            }
+
+            fetch_registration_list(1);
+        };
+    </script>
+
+</body>
+
+</html>

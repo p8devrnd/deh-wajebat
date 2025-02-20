@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/requests.js' %}"></script>
+
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjuman Taiyabi: Jamaat Login</title>
+</head>
+
+<body>
+    <center><div class="card" style="width: 18rem; margin-top: 7%;">
+        <div class="card-body" style="background-color: #ffe5a2;">
+            <center><img src="{% static 'img/ajt_logo.png' %}" style="width: 80%; height: 80%;">
+            </center>
+        </div>
+    </div></center>
+    
+    <center><div class="card my-div" style="margin-top: 5%;">
+        <div class="card-body" style="padding: 4%; text-align: left;">
+            <form id="jamaat_auth_form">
+                <div>
+                    <div class="alert alert-danger" id='alert-box' role="alert" style="display: none;">
+                      It seems you used bad ITS or password. Please check and try again.
+                    </div>
+                </div>
+            <div>
+                <label style="text-align: left;">Admin ITS</label><br/>
+                  <input type="text" name='its' class="form-control" placeholder="Eg: 40404498" aria-label="its" aria-describedby="jamaat-its-id"/>
+            </div>
+            <br/>
+            <div>
+                <label style="text-align: left;">Password</label><br/>
+                  <input type="password" name='password' class="form-control" placeholder="Enter provided password here" aria-label="password" aria-describedby="jamaat-its-password"/>
+            </div>
+            <br/>
+            <div>
+                  <button type="button" onclick="jamaat_login()" class="btn btn-dark">Login</button>
+            </div>
+        </form>
+        </div> 
+    </div></center>
+    
+</body>
+
+</html>
